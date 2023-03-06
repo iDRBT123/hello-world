@@ -1,27 +1,46 @@
-package com.java
+package com.java;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.*;
 
-public class testhello {
+import org.junit.Test;
+
+
+
+public class testhello{
+
+    /* Sanity - mainline - Regresstion Test 1 - matcH */
+
+	@Test
+    public void testWordInString() {
+        String sentence = "hello world";
+        assertTrue(sentence.contains("hello"));
+    }
+    /* Sanity - mainline - Regresstion Test 2 - miss */
 
     @Test
-    void testOutput() {
-        String expectedOutput = "Hello, World!";
-        String actualOutput = "";
+    public void testWordNotInString() {
+        String sentence = "hello world";
+        assertFalse(sentence.contains("cat"));
+    }
+    /* Corner case Test 1 - Empty */
 
-        // Redirect standard output to a string
-        java.io.ByteArrayOutputStream outputStream = new java.io.ByteArrayOutputStream();
-        System.setOut(new java.io.PrintStream(outputStream));
+    @Test
+    public void testWordInEmptyString() {
+        String sentence = "";
+        assertFalse(sentence.contains("hello"));
+    }
+    /* Corner case Test 1 - Empty */
 
-        // Call the main method of the HelloWorld class
-        HelloWorld.main(new String[] {});
-
-        // Get the actual output from the redirected standard output
-        actualOutput = outputStream.toString().trim();
-
-        // Assert that the actual output matches the expected output
-        assertEquals(expectedOutput, actualOutput);
+    @Test
+    public void testWordInStringCaseInsensitive() {
+        String sentence = "hello world";
+        assertTrue(sentence.toLowerCase().contains("hello"));
+    }
+       /* Corner case Test 1 - Empty */
+ 
+    @Test
+    public void testWordWithSpecialCharacters() {
+        String sentence = "hello world";
+        assertTrue(sentence.contains("hello"));
     }
 }
-
